@@ -1,52 +1,95 @@
-const numInput = document.getElementById("num1")
-const operando = document.getElementById("operando")
-const display = document.getElementById("display")
-let num1Value = ""
+const display = document.getElementById("display");
+let currentInput = "";
+let operacion = "";
+let Result = null;
 
-const botones = document.querySelector(".calculator")
-botones.addEventListener("click" ,(evento)=>{
-    if (evento.target.id == "sum"){
-        operando.textContent="+"
-        num1Value = numInput.value
-        numInput.value="" 
-    }
-    if (evento.target.id == "rest"){
-        operando.textContent="-"
-        num1Value = numInput.value
-        numInput.value="" 
-    }
-    if (evento.target.id == "multi"){
-        operando.textContent="*"
-        num1Value = numInput.value
-        numInput.value="" 
-    }
-    if (evento.target.id == "divi"){
-        operando.textContent="/"
-        num1Value = numInput.value
-        numInput.value="" 
-    }
-    if (evento.target.id == "clear"){
-        operando.textContent=""
-        numInput.value = "";
-        display.textContent = "";
-        num1Value = ""
-    }
+function añadirDisplay(value) {
+  currentInput += value;
+  display.textContent = currentInput;
+}
 
-    if (evento.target.id == "igual"){
-        const num2Value = numInput.value
-        if (!isNaN(num1Value) && !isNaN(num2Value)) {
-            if(operando.textContent=="+")
-                display.textContent = Number(num1Value) + Number(num2Value)
-            if(operando.textContent=="-")
-                display.textContent = num1Value - num2Value
-            if(operando.textContent=="*")
-                display.textContent = num1Value * num2Value
-            if(operando.textContent=="/")
-                display.textContent = num1Value / num2Value
-            if(operando.textContent=="")
-                display.textContent = ""
-        } else {
-            display.textContent = "Invalid input"
-        }
+function clearDisplay() {
+  currentInput = "";
+  operacion = "";
+  Result = null;
+  display.textContent = "";
+}
+
+function backspace() {
+  currentInput = currentInput.slice(0, -1);
+  display.textContent = currentInput;
+}
+
+function realizarOperación() {
+  const num1 = parseFloat(Result);
+  const num2 = parseFloat(currentInput);
+  if (isNaN(num2)) {
+    display.textContent = "Invalid input";
+    return;
+  }
+  switch (operacion) {
+    case "+":
+      Result = num1 + num2;
+      break;
+    case "-":
+      Result = num1 - num2;
+      break;
+    case "*":
+      Result = num1 * num2;
+      break;
+    case "/":
+      Result = num1 / num2;
+      break;
+    default:
+      Result = num2;
+      break;
+  }
+  currentInput = "";
+  operacion = "";
+  display.textContent = Result;
+}
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    realizarOperación();
+  } else if (event.key === "Escape") {
+    clearDisplay();
+  } else if (event.key === "Backspace") {
+    backspace();
+  } else if (!isNaN(event.key) || event.key === ".") {
+    añadirDisplay(event.key);
+  } else if (event.key === "+" || event.key === "-" || event.key === "*" || event.key === "/") {
+    operacion = event.key;
+    if (Result === null) {
+      Result = currentInput;
+    } else {
+      realizarOperación();
     }
-})
+    currentInput = "";
+    display.textContent = operacion;
+  }
+});
+
+document.querySelectorAll(".calculator button").forEach(function (button) {
+  button.addEventListener("click", function (event) {
+    const buttonValue = event.target.textContent;
+    if (buttonValue === "C") {
+      clearDisplay();
+    } else if (buttonValue === "⌫") {
+      backspace();
+    } else if (buttonValue === "=") {
+      realizarOperación();
+    } else if (!isNaN(buttonValue) || buttonValue === ".") {
+      añadirDisplay(buttonValue);
+    } else {
+      operacion = buttonValue;
+      if (Result === null) {
+        Result = currentInput;
+      } else {
+        realizarOperación();
+      }
+      currentInput = "";
+      display.textContent = operacion;
+    }
+  });
+});
