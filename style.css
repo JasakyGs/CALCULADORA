@@ -25,7 +25,7 @@ h2{
     color: #fff;
     margin-left: 16%;
     margin-bottom: 20%;
-    background: linear-gradient(90deg, rgb(31, 120, 21) 0%, rgb(105, 237, 123) 26%, rgb(105, 237, 123) 48%, rgb(105, 237, 123) 67%, rgb(38, 119, 16) 100%);
+    background: linear-gradient(90deg, rgba(26, 95, 122, 0.635) 0%, rgba(87, 197, 182, 0.682) 26%, rgba(255, 200, 60, 0.886)  48%, rgba(255, 200, 60, 0.886) 67%, rgba(255, 200, 60, 0.886) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -38,15 +38,15 @@ h2{
     width: 500px;
     height: 590px;
     border-radius: 10px;
-    border: #03c229d4 solid ;
-    box-shadow: rgba(54, 219, 79, 0.56) 0px 5px 100px 30px;
+    border: #1A5F7A solid ;
+    box-shadow: rgba(87, 197, 182, 0.682) 0px 5px 90px 30px;
   }
   .display{
     background-color: #fff;
     color: #fff;
     margin-top: 0%;
-    border: #03c229d4 solid !important;
-    box-shadow: rgba(54, 219, 79, 0.56) 0px 5px 100px 30px;
+    border: #1A5F7A solid !important;
+    box-shadow: rgba(87, 197, 182, 0.682) 0px 5px 30px 10px;
     background-color: transparent;
     border: none;
     border-radius: 15px;
@@ -70,8 +70,8 @@ h2{
   }
   .label{
     background-color: transparent;
-    border: #03c229d4 solid !important;
-    box-shadow: rgba(54, 219, 79, 0.56) 0px 5px 100px 30px;
+    border: #1A5F7A solid !important;
+    box-shadow: rgba(87, 197, 182, 0.682)  0px 2px 30px 10px;
     color: #fff;
     border: none;
     width: 45%;
@@ -84,8 +84,8 @@ h2{
   .input-group input {
     color: #fff;
     background-color: transparent;
-    box-shadow: rgba(54, 219, 79, 0.56) 0px 5px 100px 30px;
-    border: #03c229d4 solid !important;
+    box-shadow: rgba(87, 197, 182, 0.682)  0px 5px 30px 10px;
+    border: #1A5F7A solid !important;
     border: none;
     width: 45%;
     height: 100%;
@@ -109,18 +109,22 @@ h2{
 }
 
 button {
-    border: #03c229d4 solid !important;
+    border: #1A5F7A solid !important;
     border-radius: 8px;
     outline: none;
     background-color: transparent;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 24px;
+    transition:  0.3s ease-in-out,  0.3s ease-in-out;
 }
+
     
 button:hover{
-    background-color: #03c229;
-    transition: color 0.3s 0.1s all;
+    background-color: #159895;
+    transition:  0.3s ease-in-out,  0.3s ease-in-out;
+    transform: translateY(-5px);
     cursor: pointer;
+    transition:  0.3s ease-in-out;
     
 }
   .button-group button {
@@ -157,5 +161,4 @@ button:hover{
     display: grid;
     place-content: center;
     height: 100%;
-    border: #03c229 solid ;
   }
