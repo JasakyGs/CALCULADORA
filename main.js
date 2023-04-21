@@ -21,8 +21,8 @@ function backspace() {
 }
 
 function realizarOperación() {
-  const num1 = parseFloat(Result);
-  const num2 = parseFloat(currentInput);
+  let num1 = parseFloat(Result);
+  let num2 = parseFloat(currentInput);
   if (isNaN(num2)) {
     display.textContent = "Invalid input";
     return;
